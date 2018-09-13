@@ -38,16 +38,16 @@ git submodule update --init --recursive
 
 * Boost
 
-   BitShares Core depends on the Boost libraries version 1.57 ~ 1.60.  You can build them from
+   BitShares Core depends on the Boost libraries version 1.57 ~ 1.65.  You can build them from
    source.
-   * download the latest boost source from http://www.boost.org/users/download/
+   * download boost source from http://www.boost.org/users/download/
    * unzip it to the base directory `D:\bitshares`.
    * This will create a directory like `D:\bitshares\boost_1_57_0`.
 
 * OpenSSL
 
-   BitShares Core depends on OpenSSL, and you must build this from source.
-    * download the latest OpenSSL source from http://www.openssl.org/source/
+   BitShares Core depends on OpenSSL version 1.0.1 or 1.0.2, and you must build this from source.
+    * download OpenSSL source from http://www.openssl.org/source/
     * Untar it to the base directory `D:\bitshares`
     * this will create a directory like `D:\bitshares\openssl-1.0.1g`.
 
@@ -75,7 +75,7 @@ Put this into the notepad window, then save and quit.
 
 ```
 @echo off
-set GRA_ROOT=d:\bitshares\bitshares-core
+set GRA_ROOT=d:\bitshares
 set OPENSSL_ROOT=%GRA_ROOT%\openssl-1.0.1g
 set OPENSSL_ROOT_DIR=%OPENSSL_ROOT%
 set OPENSSL_INCLUDE_DIR=%OPENSSL_ROOT%\include
@@ -98,8 +98,8 @@ setenv_x64.bat
 ```
 D:
 cd D:\bitshares\openssl-1.0.1g
-perl Configure --openssldir=D:\bitshares\OpenSSL VC-WIN64A
-ms\do_ms.bat
+perl Configure VC-WIN64A --prefix=D:\bitshares\OpenSSL
+ms\do_win64a
 nmake -f ms\ntdll.mak
 nmake -f ms\ntdll.mak install
 ```
@@ -112,7 +112,7 @@ nmake -f ms\ntdll.mak install
 D:
 cd D:\bitshares\boost_1_57_0
 bootstrap
-.\b2
+.\b2.exe address-model=64
 ```
 
 #### Build project files for BitShares Core ####

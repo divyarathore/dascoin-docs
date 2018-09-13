@@ -74,7 +74,7 @@ Creating data directory
 
 We will a new data directory for our witness as follows:
 
-    programs/witness_node/witness_node --data-dir data/my-blockprod --genesis-json my-genesis.json
+    programs/witness_node/witness_node --data-dir data/my-blockprod --genesis-json genesis/my-genesis.json --seed-nodes "[]"
 
 The `data/my-blockprod` directory does not exist, it will be created
 by the witness node.
@@ -100,7 +100,7 @@ and set the following settings, uncommenting them if necessary:
     p2p-endpoint = 127.0.0.1:11010
     rpc-endpoint = 127.0.0.1:11011
 
-    genesis-json = my-genesis.json
+    genesis-json = genesis/my-genesis.json
 
     private-key = ["GPH6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV","5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3"]
 
@@ -124,7 +124,7 @@ signing blocks on a single node.
 
 Now run `witness_node` again:
 
-    programs/witness_node/witness_node --data-dir data/my-blockprod --enable-stale-production
+    programs/witness_node/witness_node --data-dir data/my-blockprod --enable-stale-production --seed-nodes "[]"
 
 Note that we need not specify `genesis.json` on the command line, since
 we now specify it in the config file.  The `--enable-stale-production`
@@ -132,6 +132,7 @@ flag tells the `witness_node` to produce on a chain with zero blocks or
 very old blocks.  We specify the `--enable-stale-production` parameter
 on the command line as we will not normally need it (although it can
 also be specified in the config file).
+The empty `--seed-nodes` is added to avoid connecting to the default seed nodes hardcoded for production.
 
 Subsequent runs which connect to an existing witness node over the p2p
 network, or which get blockchain state from an existing data directory,
@@ -197,8 +198,8 @@ to LTM, use the `upgrade_account` command:
 We can now register an account.  The `register_account` command
 allows you to register an account using only a public key:
 
-    register_account alpha GPH4zSJHx7D84T1j6HQ7keXWdtabBBWJxvfJw72XmEyqmgdoo1njF GPH4zSJHx7D84T1j6HQ7keXWdtabBBWJxvfJw72XmEyqmgdoo1njF nathan nathan 0 true
-    transfer nathan alpha 100000 CORE "here is the cash" true
+    register_account alpha BTS4zSJHx7D84T1j6HQ7keXWdtabBBWJxvfJw72XmEyqmgdoo1njF BTS4zSJHx7D84T1j6HQ7keXWdtabBBWJxvfJw72XmEyqmgdoo1njF nathan nathan 0 true
+    transfer nathan alpha 100000 BTS "here is the cash" true
 
 We can now open a new wallet for `alpha` user:
 
